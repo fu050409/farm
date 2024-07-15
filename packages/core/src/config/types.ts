@@ -83,6 +83,8 @@ type AvailableUserConfigKeys = Exclude<
   'configFilePath' | 'env' | 'coreLibPath' | 'root'
 >;
 
+export type VitePluginOption = null | false | undefined | object | (() => { vitePlugin: any; filters: string[] }) | VitePluginOption[];
+
 export interface UserConfig {
   /** current root of this project, default to current working directory */
   root?: string;
@@ -93,12 +95,7 @@ export interface UserConfig {
   /** js plugin(which is a javascript object) and rust plugin(which is string refer to a .farm file or a package) */
   plugins?: (RustPlugin | JsPlugin | JsPlugin[] | undefined | null | false)[];
   /** vite plugins */
-  vitePlugins?: (
-    | null
-    | undefined
-    | object
-    | (() => { vitePlugin: any; filters: string[] })
-  )[];
+  vitePlugins?: VitePluginOption[];
   /** config related to compilation */
   compilation?: Pick<InternalConfig, AvailableUserConfigKeys>;
   /** config related to dev server */

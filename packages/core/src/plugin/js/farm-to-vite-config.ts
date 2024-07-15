@@ -104,7 +104,7 @@ function getTargetField(
   getter?: (target: any, key: string) => any
 ): any {
   if (typeof key !== 'string') {
-    return target[key as unknown as keyof typeof target];
+    return target[key as keyof typeof target];
   }
 
   const internalKeys = ['then', 'length', 'constructor', 'prototype'];

@@ -15,7 +15,10 @@ import { VitePluginAdapter } from './vite-plugin-adapter.js';
 // export * from './jsPluginAdapter.js';
 export { VitePluginAdapter } from './vite-plugin-adapter.js';
 
-type VitePluginType = object | (() => { vitePlugin: any; filters: string[] });
+type VitePluginType =
+  | object
+  | false
+  | (() => { vitePlugin: any; filters: string[] });
 type VitePluginsType = VitePluginType[];
 
 export async function handleVitePlugins(
