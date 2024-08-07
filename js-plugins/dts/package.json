@@ -1,15 +1,15 @@
 {
   "name": "@farmfe/js-plugin-dts",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "",
   "main": "./build/index.cjs",
   "types": "./dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
-      "default": "./build/index.cjs",
       "require": "./build/index.cjs",
       "import": "./dist/index.js",
+      "default": "./build/index.cjs",
       "types": "./dist/index.d.ts"
     }
   },

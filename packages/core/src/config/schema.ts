@@ -44,10 +44,14 @@ const compilationConfigSchema = z
             'browser-legacy',
             'browser-esnext',
             'browser-es2015',
-            'browser-es2017'
+            'browser-es2017',
+            'library',
+            'library-browser',
+            'library-node'
           ])
           .optional(),
-        format: z.enum(['cjs', 'esm']).optional()
+        format: z.enum(['cjs', 'esm']).optional(),
+        clean: z.boolean().optional()
       })
       .strict()
       .optional(),
@@ -216,7 +220,8 @@ const compilationConfigSchema = z
               z.literal('minify-module'),
               z.literal('minify-resource-pot')
             ])
-            .optional()
+            .optional(),
+          moduleDecls: z.boolean().optional()
         })
       ])
       .optional(),
@@ -369,7 +374,8 @@ const FarmConfigSchema = z
             z.boolean(),
             z
               .object({
-                host: z.union([z.string().nonempty(), z.boolean()]).optional(),
+                protocol: z.string().optional(),
+                host: z.union([z.string().min(1), z.boolean()]).optional(),
                 port: z.number().positive().int().optional(),
                 path: z.string().optional(),
                 watchOptions: z

@@ -131,8 +131,12 @@ export class HmrClient {
             chain.length > 1 ? chain[chain.length - 2] : undefined;
 
           if (!hotContext) {
-            console.error('hot context is empty for ', boundary);
-            location.reload();
+            logger.debug(
+              `hot context is empty for boundary ${boundary}. Hot update of ${boundary} is skipped.`
+            );
+            // location.reload();
+            // fix multi page application hmr
+            continue;
           }
 
           // get all the accept callbacks of the boundary module that accepts the updated module

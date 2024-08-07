@@ -292,6 +292,7 @@ pub fn handle_entry_resources(
 ) {
   let module_graph = context.module_graph.read();
   let module_group_graph = context.module_group_graph.read();
+  let is_library = context.config.output.target_env.is_library();
 
   // create a runtime resource
   let mut runtime_code = None;
@@ -351,11 +352,12 @@ pub fn handle_entry_resources(
         r#"{farm_global_this}.{FARM_MODULE_SYSTEM}.setDynamicModuleResourcesMap({dynamic_resources_code});"#,
       );
 
-      let top_level_await_entry = if context.config.script.native_top_level_await && async_modules.contains(entry) {
-        "await "
-      } else {
-        ""
-      };
+      let top_level_await_entry =
+        if context.config.script.native_top_level_await && async_modules.contains(entry) {
+          "await "
+        } else {
+          ""
+        };
 
       // 5. append call entry
       let call_entry_code = format!(
@@ -384,7 +386,7 @@ pub fn handle_entry_resources(
 
       for pre in vec![
         dep_resources_require_code,
-        if should_inject_runtime {
+        if should_inject_runtime && !is_library {
           let runtime_resource = if let Some(runtime_resource) = runtime_resource.as_ref() {
             runtime_resource
           } else {
@@ -403,13 +405,15 @@ pub fn handle_entry_resources(
         entry_bundle.prepend(&pre);
       }
 
-      for post in vec![
-        set_initial_loaded_resources_code,
-        set_dynamic_resources_map_code,
-        call_entry_code,
-        export_info_code,
-      ] {
-        entry_bundle.append(&post);
+      if !is_library {
+        for post in vec![
+          set_initial_loaded_resources_code,
+          set_dynamic_resources_map_code,
+          call_entry_code,
+          export_info_code,
+        ] {
+          entry_bundle.append(&post);
+        }
       }
 
       let entry_bundle_code = entry_bundle.to_string();
@@ -453,7 +457,7 @@ fn create_runtime_code(
   resources_map: &HashMap<String, Resource>,
   context: &Arc<CompilationContext>,
 ) -> String {
-  let node_specific_code = if context.config.output.target_env == TargetEnv::Node {
+  let node_specific_code = if context.config.output.target_env.is_node() {
     match context.config.output.format {
       ModuleFormat::EsModule => {
         format!(

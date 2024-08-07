@@ -1,5 +1,100 @@
 # @farmfe/core
 
+## 1.3.12
+
+### Patch Changes
+
+- 7417d0f3: - Fix dynamic import not work in webview context like vscode extension, we have specify the full lazy compilation path like `http://127.0.0.1:9000/__lazyCompile` instead of `/__layzeCompile`
+  - Support `compilation.output.clean` to control remove `output.path` or not, default to true
+- 49448561: import.meta.url and require compatible esm and cjs
+- eff069c4: chore: Improve binary performance
+
+## 1.3.11
+
+### Patch Changes
+
+- 01e3100b: Fix do not full reload when boundary module not found for multi-page-app
+- Updated dependencies [01e3100b]
+  - @farmfe/runtime-plugin-hmr@3.5.5
+
+## 1.3.10
+
+### Patch Changes
+
+- fcd4dc3f: - Mark farm compatible with node 16
+  - Support targetEnv `library-node` and `library-browser`
+  - fix watcher does not watch file change beyond the project root
+  - remove script bundle port conflict log when lazy compile is disabled
+
+## 1.3.9
+
+### Patch Changes
+
+- 0483fd9a: Support compiler.traceModuleGraph
+
+## 1.3.8
+
+### Patch Changes
+
+- 5c603a65: fix moduleDecls minify bug #1644
+
+## 1.3.7
+
+### Patch Changes
+
+- 5a2936a3: Fix multiple page application hmr error
+- Updated dependencies [5a2936a3]
+  - @farmfe/runtime-plugin-hmr@3.5.4
+
+## 1.3.6
+
+### Patch Changes
+
+- b258c415: Support single bundle library
+
+## 1.3.5
+
+### Patch Changes
+
+- 6a64fe20: Support update_finished for js plugins
+- 6a64fe20: Fix:
+
+  - Public path undefined error when normalizing hmr path
+  - Resource order in html, `<link>` should present last
+
+- b1362e88: Normalize root path for vite plugins compatibility
+
+## 1.3.4
+
+### Patch Changes
+
+- 87e6ad70: Fix import/export minify #1625
+- 735117ac: Fix config reload
+
+## 1.3.3
+
+### Patch Changes
+
+- 54ddee1c: fix: proxy req.url request hmrPath error
+- 166406d0: fix: http2 not support http-proxy :path options
+- c6a8c813: Fix css @import starting with ~
+- 045e712b: fix: https options error
+
+## 1.3.2
+
+### Patch Changes
+
+- bf8bd9fe: Fix define \_\_esModule
+- Updated dependencies [bf8bd9fe]
+  - @farmfe/runtime@0.12.1
+
+## 1.3.1
+
+### Patch Changes
+
+- afe48ab7: fix: proxy ws error
+- a3788445: Add protocol option in config schema
+
 ## 1.3.0
 
 ### Minor Changes

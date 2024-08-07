@@ -26,6 +26,12 @@ export const FARM_TARGET_BROWSER_ENVS = [
   'browser-esnext'
 ];
 
+export const FARM_TARGET_LIBRARY_ENVS = [
+  'library',
+  'library-node',
+  'library-browser'
+];
+
 /* eslint-disable @typescript-eslint/no-use-before-define */
 export function isObject(value: unknown): value is Record<string, unknown> {
   return Object.prototype.toString.call(value) === '[object Object]';
@@ -157,6 +163,12 @@ export function mapTargetEnvValue(config: Config['config']) {
     config.output.targetEnv = 'node';
   } else if (FARM_TARGET_BROWSER_ENVS.includes(config.output.targetEnv)) {
     config.output.targetEnv = 'browser';
+  } else {
+    if (FARM_TARGET_LIBRARY_ENVS.includes(config.output.targetEnv)) {
+      return;
+    }
+
+    config.output.targetEnv = 'library-browser';
   }
 }
 

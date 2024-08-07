@@ -4,9 +4,9 @@ export default defineConfig(() => {
   return {
     compilation: {
       sourcemap: true,
-      persistentCache: false,
+      // persistentCache: false,
       presetEnv: false,
-      progress: false,
+      progress: false
       // output: {
       //   publicPath: '/dist/'
       // },
@@ -17,9 +17,6 @@ export default defineConfig(() => {
         path: '/__farm_hmr'
       }
     },
-    plugins: [
-      '@farmfe/plugin-react',
-      '@farmfe/plugin-sass'
-    ]
+    plugins: ['@farmfe/plugin-react', '@farmfe/plugin-sass']
   };
 });

@@ -153,11 +153,18 @@ export interface OutputConfig {
     | 'browser-legacy'
     | 'browser-es2015'
     | 'browser-es2017'
-    | 'browser-esnext';
+    | 'browser-esnext'
+    | 'library'
+    | 'library-browser'
+    | 'library-node';
   /**
    * output module format
    */
   format?: 'cjs' | 'esm';
+  /**
+   * clean output.path automatically or not
+   */
+  clean?: boolean;
 }
 
 export interface ResolveConfig {

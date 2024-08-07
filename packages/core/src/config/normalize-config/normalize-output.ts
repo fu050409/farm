@@ -33,6 +33,10 @@ export function normalizeOutput(
     }
   }
 
+  if (config.output.clean === undefined) {
+    config.output.clean = true;
+  }
+
   // only set default polyfill in production
   if (isProduction) {
     normalizeTargetEnv(config);
@@ -90,12 +94,10 @@ const targetsMap: TargetsMap = {
     cssTargets: es2017Browsers,
     scriptGenTarget: 'es2017'
   },
-  'browser-esnext': null
-};
-
-export const targetEnvMapPlatform: Record<string, string> = {
-  'lib-node': 'node',
-  'lib-browser': 'browser'
+  'browser-esnext': null,
+  library: null,
+  'library-browser': null,
+  'library-node': null
 };
 
 /**
@@ -254,8 +256,8 @@ export function normalizePublicPath(
   return defaultPublicPath;
 }
 
-export function getValidPublicPath(publicPath = '/'): string | undefined {
-  let validPublicPath;
+export function getValidPublicPath(publicPath = '/'): string {
+  let validPublicPath = '';
 
   if (publicPath.startsWith('/')) {
     validPublicPath = publicPath;

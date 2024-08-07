@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.11](https://github.com/farm-fe/farm/compare/farmfe_plugin_minify-v0.0.10...farmfe_plugin_minify-v0.0.11) - 2024-07-25
+
+### Fixed
+- moduleDecls minify [#1644](https://github.com/farm-fe/farm/pull/1644) ([#1650](https://github.com/farm-fe/farm/pull/1650))
+
+## [0.0.10](https://github.com/farm-fe/farm/compare/farmfe_plugin_minify-v0.0.9...farmfe_plugin_minify-v0.0.10) - 2024-07-19
+
+### Added
+- support single library bundle ([#1640](https://github.com/farm-fe/farm/pull/1640))
+
+### Fixed
+- import/export minify duplicate identifier [#1625](https://github.com/farm-fe/farm/pull/1625) ([#1634](https://github.com/farm-fe/farm/pull/1634))
+
+## [0.0.9](https://github.com/farm-fe/farm/compare/farmfe_plugin_minify-v0.0.8...farmfe_plugin_minify-v0.0.9) - 2024-07-15
+
+### Other
+- updated the following local packages: farmfe_core
+
 ## [0.0.8](https://github.com/farm-fe/farm/compare/farmfe_plugin_minify-v0.0.7...farmfe_plugin_minify-v0.0.8) - 2024-07-11
 
 ### Other
